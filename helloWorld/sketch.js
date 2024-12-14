@@ -16,5 +16,9 @@ function draw() {
 
     // A flag
     text('2.', x1, y1 * 2)
-    
+    fill(255);
+    noStroke;
+    rect(x1+30, y1+30, 300, 200);
+    fill(188, 0, 45)
+    circle(165, 115)
 }
