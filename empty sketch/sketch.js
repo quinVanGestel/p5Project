@@ -1,7 +1,10 @@
+let colour = 1;
+
 function setup() {
-    createCanvas(1700, 820);
+    createCanvas(1708, 828);
 }
 
 function draw() {
-    background(239, 170, 196);
+    background(colour*200);
+let colour = lerp (0, 1, 0.1);
 }
