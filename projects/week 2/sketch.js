@@ -1,4 +1,5 @@
 // // //  Hi there, this is my second project, I started this on 2024-12-15.
+// // //  2024-12-21-16-58  Hi there, I've done everything I wanted to do, I'd say this project is finished.
 let xCanvas = 1708
 let trafLight = 0;
 let xCar = 1500;
@@ -19,11 +20,14 @@ let genStroke = 1;
 let ySun = 0;
 let xSun = -100;
 let xMoon = xCanvas + 100;
-let stellarSpeed = 0.5;
+let stelSpeedMod = 4;
+let stelSpeedBase = 0.05;
+let stelSpeedResult = 0;
 let carLeft = 0;
 let carRight = 0;
 let carUp = 0;
 let carDown = 0;
+
 
 function setup() {
   createCanvas(xCanvas, 828);
@@ -47,6 +51,9 @@ function setup() {
 function draw() {
   background(day);
 
+  // Allows the speed of the sun and moon to be adjusted manually.
+  stelSpeedResult = stelSpeedBase * stelSpeedMod
+  
 
   // // All the day night sun moon related stuff.
   // A simple yes no day night cycle.
@@ -192,7 +199,7 @@ function draw() {
   strokeWeight(genStroke);
   fill(255, 255, 0);
   circle(xSun, ySun, 100);
-  xSun += stellarSpeed;
+  xSun += stelSpeedResult;
   if (xSun > xCanvas + xCanvas + 100) {
     xSun = -100;
   }
@@ -201,7 +208,7 @@ function draw() {
   strokeWeight(genStroke);
   fill(211, 211, 211);
   circle(xMoon, ySun, 100);
-  xMoon += stellarSpeed;
+  xMoon += stelSpeedResult;
   if (xMoon > xCanvas + xCanvas + 100) {
     xMoon = -100;
   }
@@ -339,6 +346,9 @@ function draw() {
   if (xCar < -150 + 2) {
     xCar = xCanvas + 2
   }
+  if (xCar > xCanvas + 2) {
+    xCar = -150 + 2
+  }
 
   // WHGY IUS IT DOING THIS
   if (carLeft === 1) {
@@ -389,7 +399,8 @@ function draw() {
   // // Text to display the values of variables.
   // textSize(40);
   // fill(0);
-  // text(`carV = ${carVelocity}, carL = ${carLeft}, carR = ${carRight}`, 300, 100);
+  // text(`carV = ${carVelocity}, carL = ${carLeft}, carR = ${carRight}, speedM = ${stelSpeedMod}, speedR ${stelSpeedResult}`, 300, 100);
+
 
   // // Test if the code is still running because this meanie likes to crash.
   // textSize(100);
@@ -400,9 +411,9 @@ function draw() {
 
 }
 
-// // 2024-12-20-18-50 An attempt at a WASD controllable car.
-function keyPressed() {
 
+function keyPressed() {
+  // 2024-12-20-18-50 An attempt at a WASD controllable car.
   if (key === 'a') {
     carLeft = 1;
   }
@@ -421,14 +432,49 @@ function keyPressed() {
   if (key === 'a') {
     carRight = 0;
   }
-  if (key === 'w'){
+  if (key === 'w' && (trafLight === 1 || trafLight === 2)){
     yCar = 545;
   }
-  if (key === 's'){
+  if (key === 's' && (trafLight === 1 || trafLight === 2)){
     yCar = 635;
+  }
+  // Allows the speed of the sun and moon to be adjusted manually.
+  if (key === '0') {
+    stelSpeedMod = 0;
+  }
+  if (key === '1') {
+    stelSpeedMod = 1;
+  }
+  if (key === '2') {
+    stelSpeedMod = 2;
+  }
+  if (key === '3') {
+    stelSpeedMod = 4;
+  }
+  if (key === '4') {
+    stelSpeedMod = 8;
+  }
+  if (key === '5') {
+    stelSpeedMod = 16;
+  }
+  if (key === '6') {
+    stelSpeedMod = 32;
+  }
+
+  if (key === '7') {
+    stelSpeedMod = 64;
+  }
+
+  if (key === '8') {
+    stelSpeedMod = 128;
+  }
+  if (key === '9') {
+    stelSpeedMod = 256;
   }
 
 
+
+  // Allows the traffic light to be adjusted manually.
   if (keyCode === SHIFT) {
     trafLight++;
     if (trafLight === 3) {
