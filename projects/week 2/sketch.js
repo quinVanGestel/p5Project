@@ -53,7 +53,7 @@ function draw() {
 
   // Allows the speed of the sun and moon to be adjusted manually.
   stelSpeedResult = stelSpeedBase * stelSpeedMod
-  
+
 
   // // All the day night sun moon related stuff.
   // A simple yes no day night cycle.
@@ -370,18 +370,18 @@ function draw() {
   // The car body.
   fill(255, 105, 180);
   rect(xCar + 35, yCar, 90, 40);
-  rect(xCar, yCar+40, 150, 50);
+  rect(xCar, yCar + 40, 150, 50);
 
   // The car windows.
   fill(176, 196, 222);
   for (let X = 0; X <= 1; X++) {
-    rect(xCar + 40 + (X * 45), yCar+10, 30, 20);
+    rect(xCar + 40 + (X * 45), yCar + 10, 30, 20);
   }
 
   // The car wheels
   fill(0);
-  circle(xCar + 37.5, yCar+90, 30);
-  circle(xCar + 112.5, yCar+90, 30);
+  circle(xCar + 37.5, yCar + 90, 30);
+  circle(xCar + 112.5, yCar + 90, 30);
 
 
   // The oak tree on the southern side of the road.
@@ -432,10 +432,10 @@ function keyPressed() {
   if (key === 'a') {
     carRight = 0;
   }
-  if (key === 'w' && (trafLight === 1 || trafLight === 2)){
+  if (key === 'w' && (trafLight === 1 || trafLight === 2)) {
     yCar = 545;
   }
-  if (key === 's' && (trafLight === 1 || trafLight === 2)){
+  if (key === 's' && (trafLight === 1 || trafLight === 2)) {
     yCar = 635;
   }
   // Allows the speed of the sun and moon to be adjusted manually.
