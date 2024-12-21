@@ -1,7 +1,8 @@
 // // //  Hi there, this is my second project, I started this on 2024-12-15.
-let canvasX = 1708
+let xCanvas = 1708
 let trafLight = 0;
 let xCar = 1500;
+let yCar = 545;
 let xCloud1 = 0;
 let yCloud1 = 0;
 let xCloud2 = 0;
@@ -15,15 +16,17 @@ let cloudVelocity2 = 0;
 let cloudVelocity3 = 0;
 let cloudVelocity4 = 0;
 let genStroke = 1;
-let xSun = -50;
 let ySun = 0;
-let xMoon = -canvasX-100;
-let stellarSpeed = 0.05;
-
-
+let xSun = -100;
+let xMoon = xCanvas + 100;
+let stellarSpeed = 0.5;
+let carLeft = 0;
+let carRight = 0;
+let carUp = 0;
+let carDown = 0;
 
 function setup() {
-  createCanvas(canvasX, 828);
+  createCanvas(xCanvas, 828);
   ySun = random(0, 580);
   yCloud1 = random(0, 500);
   xCloud1 = random(0, 1710);
@@ -47,141 +50,142 @@ function draw() {
 
   // // All the day night sun moon related stuff.
   // A simple yes no day night cycle.
-  if (xSun < -50) {
-    background(night);
-  }
-  if (xMoon < -50) {
+  if (xSun <= xCanvas + 100) {
     background(day);
   }
-  // A more smooth transition from day to night.
+  if (xMoon <= xCanvas + 100) {
+    background(night);
+  }
 
-  if (xSun > canvasX - 500) {
+  // A more smooth transition from day to night. (that is broken for some reason, gahhh I hate bugs)
+  if (xSun > xCanvas - 500) {
     dusk = lerpColor(day, night, 0.05);
   }
-  if (xSun > canvasX - 450) {
+  if (xSun > xCanvas - 450) {
     dusk = lerpColor(day, night, 0.05);
   }
-  if (xSun > canvasX - 400) {
+  if (xSun > xCanvas - 400) {
     dusk = lerpColor(day, night, 0.10);
   }
-  if (xSun > canvasX - 350) {
+  if (xSun > xCanvas - 350) {
     dusk = lerpColor(day, night, 0.15);
   }
-  if (xSun > canvasX - 300) {
+  if (xSun > xCanvas - 300) {
     dusk = lerpColor(day, night, 0.20);
   }
-  if (xSun > canvasX - 250) {
+  if (xSun > xCanvas - 250) {
     dusk = lerpColor(day, night, 0.25);
   }
-  if (xSun > canvasX - 200) {
+  if (xSun > xCanvas - 200) {
     dusk = lerpColor(day, night, 0.30);
   }
-  if (xSun > canvasX - 150) {
+  if (xSun > xCanvas - 150) {
     dusk = lerpColor(day, night, 0.35);
   }
-  if (xSun > canvasX - 100) {
+  if (xSun > xCanvas - 100) {
     dusk = lerpColor(day, night, 0.40);
   }
-  if (xSun > canvasX - 50) {
+  if (xSun > xCanvas - 50) {
     dusk = lerpColor(day, night, 0.45);
   }
-  if (xSun > canvasX + 0) {
+  if (xSun > xCanvas + 0) {
     dusk = lerpColor(day, night, 0.50);
   }
-  if (xSun > canvasX + 50) {
+  if (xSun > xCanvas + 50) {
     dusk = lerpColor(day, night, 0.55);
   }
-  if (xSun > canvasX + 100) {
+  if (xSun > xCanvas + 100) {
     dusk = lerpColor(day, night, 0.60);
   }
-  if (xSun > canvasX + 150) {
+  if (xSun > xCanvas + 150) {
     dusk = lerpColor(day, night, 0.65);
   }
-  if (xSun > canvasX + 200) {
+  if (xSun > xCanvas + 200) {
     dusk = lerpColor(day, night, 0.70);
   }
-  if (xSun > canvasX + 250) {
+  if (xSun > xCanvas + 250) {
     dusk = lerpColor(day, night, 0.75);
   }
-  if (xSun > canvasX + 300) {
+  if (xSun > xCanvas + 300) {
     dusk = lerpColor(day, night, 0.80);
   }
-  if (xSun > canvasX + 350) {
+  if (xSun > xCanvas + 350) {
     dusk = lerpColor(day, night, 0.85);
   }
-  if (xSun > canvasX + 400) {
+  if (xSun > xCanvas + 400) {
     dusk = lerpColor(day, night, 0.90);
   }
-  if (xSun > canvasX + 450) {
+  if (xSun > xCanvas + 450) {
     dusk = lerpColor(day, night, 0.95);
-  }
-  if (xSun > canvasX - 500) {
-    background(dusk)
   }
 
   // A more smooth transition from night to day.
-  if (xMoon > canvasX - 500) {
+  if (xMoon > xCanvas - 500) {
     dawn = lerpColor(night, day, 0.05);
   }
-  if (xMoon > canvasX - 450) {
+  if (xMoon > xCanvas - 450) {
     dawn = lerpColor(night, day, 0.05);
   }
-  if (xMoon > canvasX - 400) {
+  if (xMoon > xCanvas - 400) {
     dawn = lerpColor(night, day, 0.10);
   }
-  if (xMoon > canvasX - 350) {
+  if (xMoon > xCanvas - 350) {
     dawn = lerpColor(night, day, 0.15);
   }
-  if (xMoon > canvasX - 300) {
+  if (xMoon > xCanvas - 300) {
     dawn = lerpColor(night, day, 0.20);
   }
-  if (xMoon > canvasX - 250) {
+  if (xMoon > xCanvas - 250) {
     dawn = lerpColor(night, day, 0.25);
   }
-  if (xMoon > canvasX - 200) {
+  if (xMoon > xCanvas - 200) {
     dawn = lerpColor(night, day, 0.30);
   }
-  if (xMoon > canvasX - 150) {
+  if (xMoon > xCanvas - 150) {
     dawn = lerpColor(night, day, 0.35);
   }
-  if (xMoon > canvasX - 100) {
+  if (xMoon > xCanvas - 100) {
     dawn = lerpColor(night, day, 0.40);
   }
-  if (xMoon > canvasX - 50) {
+  if (xMoon > xCanvas - 50) {
     dawn = lerpColor(night, day, 0.45);
   }
-  if (xMoon > canvasX + 0) {
+  if (xMoon > xCanvas + 0) {
     dawn = lerpColor(night, day, 0.50);
   }
-  if (xMoon > canvasX + 50) {
+  if (xMoon > xCanvas + 50) {
     dawn = lerpColor(night, day, 0.55);
   }
-  if (xMoon > canvasX + 100) {
+  if (xMoon > xCanvas + 100) {
     dawn = lerpColor(night, day, 0.60);
   }
-  if (xMoon > canvasX + 150) {
+  if (xMoon > xCanvas + 150) {
     dawn = lerpColor(night, day, 0.65);
   }
-  if (xMoon > canvasX + 200) {
+  if (xMoon > xCanvas + 200) {
     dawn = lerpColor(night, day, 0.70);
   }
-  if (xMoon > canvasX + 250) {
+  if (xMoon > xCanvas + 250) {
     dawn = lerpColor(night, day, 0.75);
   }
-  if (xMoon > canvasX + 300) {
+  if (xMoon > xCanvas + 300) {
     dawn = lerpColor(night, day, 0.80);
   }
-  if (xMoon > canvasX + 350) {
+  if (xMoon > xCanvas + 350) {
     dawn = lerpColor(night, day, 0.85);
   }
-  if (xMoon > canvasX + 400) {
+  if (xMoon > xCanvas + 400) {
     dawn = lerpColor(night, day, 0.90);
   }
-  if (xMoon > canvasX + 450) {
+  if (xMoon > xCanvas + 450) {
     dawn = lerpColor(night, day, 0.95);
   }
-  if (xMoon > canvasX - 500) {
-    background(dawn)
+
+  if (xMoon > xCanvas - 500 && xMoon < xCanvas + 500) {
+    background(dawn);
+  }
+  if (xSun > xCanvas - 500 && xSun < xCanvas + 500) {
+    background(dusk);
   }
 
   // A sun with a randomly generated y value, that moves from left to right.
@@ -189,8 +193,8 @@ function draw() {
   fill(255, 255, 0);
   circle(xSun, ySun, 100);
   xSun += stellarSpeed;
-  if (xSun > canvasX + canvasX + 100) {
-    xSun =  -100;
+  if (xSun > xCanvas + xCanvas + 100) {
+    xSun = -100;
   }
 
   // A moon polar to the sun
@@ -198,8 +202,8 @@ function draw() {
   fill(211, 211, 211);
   circle(xMoon, ySun, 100);
   xMoon += stellarSpeed;
-  if (xMoon > canvasX + canvasX + 100) {
-    xMoon =  -100;
+  if (xMoon > xCanvas + xCanvas + 100) {
+    xMoon = -100;
   }
 
 
@@ -306,6 +310,7 @@ function draw() {
   strokeWeight(3);
   if (trafLight === 0) {
     fill(255, 0, 0);
+    carVelocity = 0;
   }
   else {
     fill(170, 29, 19)
@@ -314,7 +319,7 @@ function draw() {
 
   if (trafLight === 1) {
     fill(0, 255, 0);
-    xCar -= 4;
+    carVelocity = 4;
   }
   else {
     fill(0, 132, 80);
@@ -323,7 +328,7 @@ function draw() {
 
   if (trafLight === 2) {
     fill(255, 165, 0);
-    xCar -= 1;
+    carVelocity = 1;
   }
   else {
     fill(163, 90, 0);
@@ -331,26 +336,43 @@ function draw() {
   circle(1506, 410, 25);
   console.log(trafLight)
 
-  if (xCar < -152) {
-    xCar = 1710
+  if (xCar < -150 + 2) {
+    xCar = xCanvas + 2
   }
+
+  // WHGY IUS IT DOING THIS
+  if (carLeft === 1) {
+    xCar -= carVelocity;
+  }
+  else {
+    xCar -= 0;
+  }
+  if (carRight === 1) {
+    xCar += carVelocity;
+  }
+  else {
+    xCar -= 0;
+  }
+
+
 
   // The car design.
   // The car body.
   fill(255, 105, 180);
-  rect(xCar + 35, 540, 90, 40);
-  rect(xCar, 580, 150, 50);
+  rect(xCar + 35, yCar, 90, 40);
+  rect(xCar, yCar+40, 150, 50);
 
   // The car windows.
   fill(176, 196, 222);
   for (let X = 0; X <= 1; X++) {
-    rect(xCar + 40 + (X * 45), 550, 30, 20);
+    rect(xCar + 40 + (X * 45), yCar+10, 30, 20);
   }
 
   // The car wheels
   fill(0);
-  circle(xCar + 37.5, 630, 30);
-  circle(xCar + 112.5, 630, 30);
+  circle(xCar + 37.5, yCar+90, 30);
+  circle(xCar + 112.5, yCar+90, 30);
+
 
   // The oak tree on the southern side of the road.
   strokeWeight(genStroke);
@@ -364,15 +386,50 @@ function draw() {
   textSize(15);
   text(`x: ${mouseX} y: ${mouseY}`, 50, 50);
 
-  // Test if the code is still running because this meanie likes to crash.
+  // // Text to display the values of variables.
+  // textSize(40);
+  // fill(0);
+  // text(`carV = ${carVelocity}, carL = ${carLeft}, carR = ${carRight}`, 300, 100);
+
+  // // Test if the code is still running because this meanie likes to crash.
   // textSize(100);
   // fill(0);
-  // text('dusk', 500, 300);
+  // text('test', 500, 300);
+
+
 
 }
 
+// // 2024-12-20-18-50 An attempt at a WASD controllable car.
 function keyPressed() {
-  if (key === ' ') {
+
+  if (key === 'a') {
+    carLeft = 1;
+  }
+  if (key === 'q') {
+    carLeft = 0;
+  }
+  if (key === 'd') {
+    carLeft = 0;
+  }
+  if (key === 'd') {
+    carRight = 1;
+  }
+  if (key === 'q') {
+    carRight = 0;
+  }
+  if (key === 'a') {
+    carRight = 0;
+  }
+  if (key === 'w'){
+    yCar = 545;
+  }
+  if (key === 's'){
+    yCar = 635;
+  }
+
+
+  if (keyCode === SHIFT) {
     trafLight++;
     if (trafLight === 3) {
       trafLight = 0;
