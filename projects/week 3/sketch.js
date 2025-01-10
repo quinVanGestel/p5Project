@@ -8,7 +8,17 @@ let yTTT = (yCanvas - tTTSize) / 2;
 // Activate the bit with emoji to visualise. Search dkjsafl to find it quickly.
 let xSquare = [xTTT, xTTT + (tTTSize / 3), xTTT + (tTTSize / (3 / 2)), xTTT + tTTSize];
 let ySquare = [yTTT, yTTT + (tTTSize / 3), yTTT + (tTTSize / (3 / 2)), yTTT + tTTSize];
-let sqr6 = false
+let tTTSquare;
+let sqr1 = false;
+let sqr2 = false;
+let sqr3 = false;
+let sqr4 = false;
+let sqr5 = false;
+let sqr6 = false;
+let sqr7 = false;
+let sqr8 = false;
+let sqr9 = false;
+let oTurn = false;
 
 function setup() {
     createCanvas(xCanvas, yCanvas);
@@ -41,40 +51,70 @@ function draw() {
 
     textSize(90);
     fill(200);
-    // Detects if the mouse is above squares one to three, text is for debugging.
+    // Detects if the mouse is above squares one to six, text is for debugging.
     if (mouseX > xSquare[0] && mouseX < xSquare[1] && mouseY > ySquare[0] && mouseY < ySquare[1]) {
         text('sqr1', xSquare[0], ySquare[0] + tTTSize / 5);
     }
+
     if (mouseX > xSquare[1] && mouseX < xSquare[2] && mouseY > ySquare[0] && mouseY < ySquare[1]) {
         text('sqr2', xSquare[1], ySquare[0] + tTTSize / 5);
     }
+
     if (mouseX > xSquare[2] && mouseX < xSquare[3] && mouseY > ySquare[0] && mouseY < ySquare[1]) {
         text('sqr3', xSquare[2], ySquare[0] + tTTSize / 5);
     }
-    // Detects if the mouse is above squares four to six, text is for debugging.
+
     if (mouseX > xSquare[0] && mouseX < xSquare[1] && mouseY > ySquare[1] && mouseY < ySquare[2]) {
         text('sqr4', xSquare[0], ySquare[1] + tTTSize / 5);
     }
+
     if (mouseX > xSquare[1] && mouseX < xSquare[2] && mouseY > ySquare[1] && mouseY < ySquare[2]) {
         text('sqr5', xSquare[1], ySquare[1] + tTTSize / 5);
     }
+
     if (mouseX > xSquare[2] && mouseX < xSquare[3] && mouseY > ySquare[1] && mouseY < ySquare[2]) {
         text('sqr6', xSquare[2], ySquare[1] + tTTSize / 5);
     }
-    // Detects if the mouse is above squares seven to nine, text is for debugging.
-    if (mouseX > xSquare[0] && mouseX < xSquare[1] && mouseY > ySquare[2] && mouseY < ySquare[3]) {
-        text('sqr4', xSquare[0], ySquare[2] + tTTSize / 5);
+
+    // Square five.
+    if (mouseX > xSquare[1] && mouseX < xSquare[2] && mouseY > ySquare[2] && mouseY < ySquare[3] && mouseIsPressed && oTurn === false) {
+        sqr8 = true;
+        oTurn = true;
     }
-    if (mouseX > xSquare[1] && mouseX < xSquare[2] && mouseY > ySquare[2] && mouseY < ySquare[3]) {
-        text('sqr5', xSquare[1], ySquare[2] + tTTSize / 5);
+    if (sqr8 === true) {
+        text('sqr8', xSquare[1], ySquare[2] + tTTSize / 5);
     }
-    // Detects if square 6 has been clicked, just to see how things work.
-    if (mouseX > xSquare[2] && mouseX < xSquare[3] && mouseY > ySquare[2] && mouseY < ySquare[3] && mouseIsPressed) {
-        sqr6 = true
+
+    if (mouseX > xSquare[1] && mouseX < xSquare[2] && mouseY > ySquare[2] && mouseY < ySquare[3] && mouseIsPressed && oTurn === true) {
+        sqr8 = true;
+        oTurn = false;
     }
-    if (sqr6 === true) {
-        text('sqr6', xSquare[2], ySquare[2] + tTTSize / 5);
+    if (sqr8 === true) {
+        text('sqr8', xSquare[1], ySquare[2] + tTTSize / 5);
     }
+
+    // Square six.
+    if (mouseX > xSquare[2] && mouseX < xSquare[3] && mouseY > ySquare[2] && mouseY < ySquare[3] && mouseIsPressed && (oTurn === false)) {
+        sqr9 = true;
+        oTurn = true;
+    }
+    if (sqr9 === true) {
+        text('sqr9', xSquare[2], ySquare[2] + tTTSize / 5);
+    }
+
+    if (mouseX > xSquare[2] && mouseX < xSquare[3] && mouseY > ySquare[2] && mouseY < ySquare[3] && mouseIsPressed && (oTurn === true)) {
+        sqr9 = true;
+        oTurn = false;
+    }
+    if (sqr9 === true) {
+        text('sqr9', xSquare[2], ySquare[2] + tTTSize / 5);
+    }
+    
+
+
+
+
+
 
     // A mouse position detector I stole because I'm sick of the guesswork.
     strokeWeight(0.3);
