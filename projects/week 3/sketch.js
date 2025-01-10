@@ -42,6 +42,7 @@ function draw() {
     // Horizontal line 2.
     line(xSquare[0], ySquare[2], xSquare[3], ySquare[2]);
 
+
     // This is the bit with emoji to visualise. Search dkjsafl to find what you're visualising.
     text('0️⃣', xSquare[0], ySquare[0]);
     text('1️⃣', xSquare[1], ySquare[1]);
@@ -49,9 +50,11 @@ function draw() {
     text('3️⃣', xSquare[3], ySquare[3]);
 
 
-    textSize(90);
-    fill(200);
-    // Detects if the mouse is above squares one to six, text is for debugging.
+    textSize(90);   // The textSize for the debug text.
+    fill(200);  // The background colour for the text and inside of the o's (set to background colour once debugging is finished.)
+    strokeWeight(tTTSize/100); // The strokeWeight for the x's and o's.
+            // Detects mouses and clicks, the foundation for tic tac toe.
+    // Squares one to five.
     if (mouseX > xSquare[0] && mouseX < xSquare[1] && mouseY > ySquare[0] && mouseY < ySquare[1]) {
         text('sqr1', xSquare[0], ySquare[0] + tTTSize / 5);
     }
@@ -72,28 +75,30 @@ function draw() {
         text('sqr5', xSquare[1], ySquare[1] + tTTSize / 5);
     }
 
+    // Square six, circle test.
     if (mouseX > xSquare[2] && mouseX < xSquare[3] && mouseY > ySquare[1] && mouseY < ySquare[2]) {
-        text('sqr6', xSquare[2], ySquare[1] + tTTSize / 5);
+        circle((xSquare[2] + tTTSize / 6), (ySquare[1] + tTTSize / 6), 100); // To test whether,, I know how to make a circle. Can't be too certain when it comes to coding!
     }
 
-    // Square five.
+        // Square eight and nine, testing whether I know how to make alternating x's and o's.
+    // Square eight.
     if (mouseX > xSquare[1] && mouseX < xSquare[2] && mouseY > ySquare[2] && mouseY < ySquare[3] && mouseIsPressed && oTurn === false) {
         sqr8 = true;
         oTurn = true;
     }
-    if (sqr8 === true) {
-        text('sqr8', xSquare[1], ySquare[2] + tTTSize / 5);
+    if (sqr8 === true && oTurn === true) {
+        circle((xSquare[1] + tTTSize / 6), (ySquare[2] + tTTSize / 6), 100);
     }
 
     if (mouseX > xSquare[1] && mouseX < xSquare[2] && mouseY > ySquare[2] && mouseY < ySquare[3] && mouseIsPressed && oTurn === true) {
         sqr8 = true;
         oTurn = false;
     }
-    if (sqr8 === true) {
+    if (sqr8 === true && oTurn === false) {
         text('sqr8', xSquare[1], ySquare[2] + tTTSize / 5);
     }
 
-    // Square six.
+    // Square nine.
     if (mouseX > xSquare[2] && mouseX < xSquare[3] && mouseY > ySquare[2] && mouseY < ySquare[3] && mouseIsPressed && (oTurn === false)) {
         sqr9 = true;
         oTurn = true;
@@ -121,14 +126,22 @@ function draw() {
     textSize(15);
     text(`x: ${mouseX} y: ${mouseY}`, 50, 50);
 
+    if (oTurn === true){
+    textSize(100);
+    fill(200);    
+    text('test', 500, 300);
+    }
     // Text to display the values of variables.
-    textSize(20);
+    textSize(30);
     fill(220);
-    text(`xTTT = ${xTTT}, yTTT = ${yTTT}, tTTSize = ${tTTSize} xSqr3 = ${xSquare[3]}, xTTT = ${(xCanvas - tTTSize) / 2}, xSqr1 = ${xSquare[1]}`, 300, 100);
+    text(`xTTT = ${xTTT}, yTTT = ${yTTT}, tTTSize = ${tTTSize} xSqr3 = ${xSquare[3]}, xTTT = ${(xCanvas - tTTSize) / 2}, xSqr1 = ${xSquare[1]}, oTurn = ${oTurn}, sqr8 = ${sqr8}`, 0, 100);
 
     // // Test if the code is still running because this meanie likes to crash.
     // textSize(100);
     // fill(200);    
     // text('test', 500, 300);
 
+    textSize(35);
+    fill(200);    
+    text('Remember to text if the sqr variable values actually change or if something else is going on here.', 0, 800);
 }
