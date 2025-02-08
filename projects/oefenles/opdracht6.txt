@@ -1,0 +1,21 @@
+In dit tekstbestand zet je de SQL statements van de drie delen van de opdracht.
+Met kopieren en plakken is dat snel voor elkaar.
+
+
+
+OPDRACHT 6 (1)
+
+SELECT CustomerName FROM Customers;
+
+
+OPDRACHT 6 (2)
+
+SELECT * FROM Customers
+WHERE Country='UK';
+
+
+OPDRACHT 6 (3)
+
+SELECT * FROM Customers
+WHERE Country='UK' 
+AND NOT City='London';

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+	<body>
+		<p>
+			Getal 1: <input type="number" id="getal1" value="0"><br>
+			Getal 2: <input type="number" id="getal2" value="0">
+		</p>
+		<p>
+			<button id="optellen" onclick="optellen()">Optellen</button>
+			<button id="aftrkken" onclick="aftrekken()">Aftrekken</button>
+			<button id="vermenigvuldigen" onclick="vermenigvuldigen()">Vermenigvuldigen</button>
+			<button id="delen" onclick="delen()">Delen</button>
+		</p>
+		<p>Uitkomst: <span id="uitkomst"></span></p>
+		<script>
+			
+			var uitkomstElement = document.getElementById("uitkomst");
+			var getal1 = 0;
+			var getal2 = 0;
+
+			function optellen() {
+				getValues();
+				uitkomstElement.innerHTML = getal1 + getal2;
+			}
+
+			function aftrekken() {
+				getValues();
+				uitkomstElement.innerHTML = getal1 - getal2;
+			}
+
+			function vermenigvuldigen() {
+				getValues();
+				uitkomstElement.innerHTML = getal1 * getal2;
+			}
+
+			function delen() {
+				getValues();
+				uitkomstElement.innerHTML = getal1 / getal2;
+			}
+
+			function getValues() {
+				getal1 = Number(document.getElementById("getal1").value);
+				getal2 = Number(document.getElementById("getal2").value);
+			}
+		</script>
+	</body>
+</html>

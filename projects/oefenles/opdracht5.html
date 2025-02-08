@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Opdracht 7</title>
+	</head>
+	<body>
+		<h2>Asynchrone zoekhint</h2>
+		<p>Type letters van een naam en krijg een suggestie als er namen bestaan in de lijst.</p>
+		<br>
+		<form> 
+			Voornaam:
+			<input type="text" id="tekst1" oninput="toonHint(this.value)">
+		</form>
+
+		<p>Suggesties: <span id="tekstHint" ></span></p>
+		
+		<br>
+		<p>De lijst met namen waar de suggesties uitkomen:</p>
+		
+		<span id="namenLijst"></span>
+
+		<!-- Einde van de HTML -->
+		<!-- Hieronder begint de Javascript code -->
+		<script>
+			var namen = [
+			"Jacob", "Abbey", "Antwan", "Antoin", "Peter", "Sebastian", "Korneel", "Bas",
+			"John", "Giel", "Frans", "Chantal", "Dirk", "Evert", "Hans", "Isabelle",
+			"Karel", "Leendert", "Marieke", "Nena", "Onno", "Pieter", "Quirijn", "Remco",
+			"Stefan", "Truus", "Umberto", "Victor", "Victoria", "Willem", "Xantippe",
+			"Ziggy", "Zeus", "Yannick", "Robert", "Bram"];
+
+			var eind = namen.length
+			let lorem = namen.slice(0, eind-2).join(', ');
+			let ipsum = namen.slice(eind-2, eind).join(' en ');
+			document.getElementById("namenLijst").innerHTML = lorem+', '+ipsum
+			// Einde code om de volledige namenlijst te tonen
+
+			function toonHint(str) {
+				if (str.length > 0) {
+					document.getElementById("tekstHint").innerHTML = haalhint(str);
+				}else{
+					document.getElementById("tekstHint").innerHTML = "";
+				}
+			}
+
+			function haalhint(str){
+				var a_gevonden = [];
+				for(i = 0; i < namen.length; i++){
+					i_len = namen[i].length;
+					if (strcasecmp(str, namen[i].substr(-i_len, str.length)) == 0){
+						a_gevonden.push(namen[i]);
+					}
+				}
+
+				if(a_gevonden.length){
+					tekst = "";
+					for(i = 0; i < a_gevonden.length; i++){
+						tekst = tekst + a_gevonden[i] + "   ";
+					}
+				}else{
+					tekst = "Geen suggestie";
+				}
+				return tekst;
+			}
+
+			function strcasecmp(fString1, fString2){
+				var string1 = (fString1 + '').toLowerCase();
+				var string2 = (fString2 + '').toLowerCase();
+				if(string1 > string2){
+					return 1;
+				}else if(string1 === string2){
+					return 0;
+				}
+				return -1
+			}
+		</script>
+	</body>
+</html>
