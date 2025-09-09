@@ -9,7 +9,7 @@ let xChess = 100;
 let yChess = 250;
 let chessSquare = 25;
 let trafLight = 0;
-let diceRoll = 0;
+let diceThrow = false;
 
 
 function setup() {
@@ -87,7 +87,21 @@ function draw() {
   point(x1 + space + 25, y1 * 12.7);
   strokeWeight(1);
 
-  // Alrighty, time to make that dice rollable.
+  // // Alrighty, time to make that dice rollable.
+  // noStroke();
+  // text('6.', x2, y1 * 5.5);
+  // stroke(0);
+  // strokeWeight(5);
+  // fill(255);
+  // square(x2 + space, 250, 210, 25);
+  // fill(0);
+  // circle(x2 + space + 52.5, 250 + 52.5, 40);
+  // circle(x2 + space + 105, 250 + 105, 40);
+  // circle(x2 + space + 52.5, 250 + 157.5, 40);
+  // circle(x2 + space + 157.5, 250 + 52.5, 40);
+  // circle(x2 + space + 157.5, 250 + 157.5, 40);
+
+    // Alrighty, time to make that dice rollable.
   noStroke();
   text('6.', x2, y1 * 5.5);
   stroke(0);
@@ -100,7 +114,10 @@ function draw() {
   circle(x2 + space + 52.5, 250 + 157.5, 40);
   circle(x2 + space + 157.5, 250 + 52.5, 40);
   circle(x2 + space + 157.5, 250 + 157.5, 40);
-
+  
+if (diceThrow === true) {
+    fill(circle(x2 + space + space + 52.5, 250 + 52.5, 40););
+  }
 
   
   // An attempt at a working traffic light.
@@ -152,7 +169,7 @@ function keyPressed() {
 
   // Praying it'll recognise ENTER as the enter key.
   if (key === 'ENTER') {
-    diceRoll = 1;
+    diceThrow = true;
     }
   
   }
