@@ -351,6 +351,7 @@ function draw() {
   }
 
   // WHGY IUS IT DOING THIS
+  // 2025-02-12 (Probably around half a year later), I really need to learn to write less vague notes 😭
   if (carLeft === 1) {
     xCar -= carVelocity;
   }
