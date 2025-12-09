@@ -9,6 +9,7 @@ let xChess = 100;
 let yChess = 250;
 let chessSquare = 25;
 let trafLight = 0;
+let diceThrow = false;
 
 
 function setup() {
@@ -21,16 +22,20 @@ function draw() {
   fill(0);
   noStroke();
   textSize(20);
-  text('Insert Name Here', x1 + space, 50);
+  text('Quin van Gestel', x1 + space, 50);
   textSize(30)
   text('1.', x1, y1 * 1);
 
+
+  
   // The japanese flag in its accurate dimensions.
   text('2.', x1, y1 * 2.5)
   fill(255);
   rect(x1 + space, y1 + space, 150, 100);
   fill(188, 0, 45)
   circle(75 + y1 + space, 50 + y1 + space, 60);
+
+
 
   // A chessboard pattern.
   fill(0);
@@ -41,6 +46,8 @@ function draw() {
   noStroke();
   fill(0);
 
+  
+
   // This was made afterward on something like 2024-12-16, it used to be an inefficient wall of code with a line for every square.
   for (let X = 0; X < 8; X++) {
     for (let Y = 0; Y < 8; Y++) {
@@ -50,6 +57,7 @@ function draw() {
     }
   }
 
+  
 
   // Making a geometry house but with colours.
   text('4.', x1, y1 * 10.5)
@@ -79,6 +87,21 @@ function draw() {
   point(x1 + space + 25, y1 * 12.7);
   strokeWeight(1);
 
+  // // Alrighty, time to make that dice rollable.
+  // noStroke();
+  // text('6.', x2, y1 * 5.5);
+  // stroke(0);
+  // strokeWeight(5);
+  // fill(255);
+  // square(x2 + space, 250, 210, 25);
+  // fill(0);
+  // circle(x2 + space + 52.5, 250 + 52.5, 40);
+  // circle(x2 + space + 105, 250 + 105, 40);
+  // circle(x2 + space + 52.5, 250 + 157.5, 40);
+  // circle(x2 + space + 157.5, 250 + 52.5, 40);
+  // circle(x2 + space + 157.5, 250 + 157.5, 40);
+
+    // Alrighty, time to make that dice rollable.
   noStroke();
   text('6.', x2, y1 * 5.5);
   stroke(0);
@@ -91,7 +114,12 @@ function draw() {
   circle(x2 + space + 52.5, 250 + 157.5, 40);
   circle(x2 + space + 157.5, 250 + 52.5, 40);
   circle(x2 + space + 157.5, 250 + 157.5, 40);
+  
+if (diceThrow === true) {
+    fill(circle(x2 + space + space + 52.5, 250 + 52.5, 40););
+  }
 
+  
   // An attempt at a working traffic light.
   noStroke();
   fill(0);
@@ -127,6 +155,10 @@ function draw() {
   console.log(trafLight)
 }
 
+
+
+
+
 function keyPressed() {
   if (key === ' ') {
     trafLight++;
@@ -135,4 +167,10 @@ function keyPressed() {
     }
   }
 
-}
+  // Praying it'll recognise ENTER as the enter key.
+  if (key === 'ENTER') {
+    diceThrow = true;
+    }
+  
+  }
+
